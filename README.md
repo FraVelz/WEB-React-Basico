@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# Proyecto de practica React (Hooks)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[English version](./README.EN.md)
 
-Currently, two official plugins are available:
+![Captura de pantalla 1](./images/screenshot1.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Captura de pantalla 2](./images/screenshot2.png)
 
-## React Compiler
+Proyecto creado para practicar React con TypeScript usando Vite.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+El enfoque principal es reforzar:
 
-## Expanding the ESLint configuration
+- `useState` para manejo de estado local.
+- `useEffect` para efectos secundarios y limpieza.
+- Separacion de responsabilidades con `components`, `hooks` y `utils`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Modulos del proyecto
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1) Contador
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Ubicacion: `src/Contador/`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Objetivos de practica:
+
+- Actualizar estado numerico con acciones de incremento/decremento.
+- Mostrar alertas temporales cuando se intenta bajar de 0.
+- Extraer logica de negocio a hook (`useContador`) y utilidades (`counterHelpers`).
+
+### 2) TicTacToe (3 en raya)
+
+Ubicacion: `src/TicTacToe/`
+
+Objetivos de practica:
+
+- Renderizado dinamico del tablero.
+- Manejo de turno (`X`/`O`) y deteccion de ganador.
+- Control de estado del juego (reinicio, modal de ganador, etc).
+
+## Estructura general
+
+```txt
+src/
+  components/
+    Container.tsx
+  Contador/
+    components/
+    hooks/
+    utils/
+    page.tsx
+  TicTacToe/
+    components/
+    hooks/
+    utils/
+    page.tsx
+  App.tsx
+  main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `npm run dev`: inicia el entorno de desarrollo.
+- `npm run build`: compila TypeScript y genera build de produccion.
+- `npm run lint`: revisa buenas practicas con ESLint.
+- `npm run preview`: levanta la build para previsualizacion local.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Instalacion y ejecucion
+
+1. Instalar dependencias:
+
+```bash
+npm install
 ```
+
+2. Ejecutar en desarrollo:
+
+```bash
+npm run dev
+```
+
+## Stack
+
+- React
+- TypeScript
+- Vite
+- ESLint
+- Tailwind CSS
+
+## Notas de aprendizaje
+
+Este repo no busca ser una app final de produccion, sino un espacio de practica guiada para consolidar hooks y mejorar calidad de codigo paso a paso (nombres consistentes, logica clara y lint limpio).
+
+## Informacion extra
+
+**Autor:** [Fravelz](https://github.com/fravelz)
