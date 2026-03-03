@@ -1,16 +1,19 @@
 import { useState } from "react";
 
-import { TURNS, winningCombinations } from "../utils/global";
+import { type typeTURNS, TURNS, winningCombinations } from "../utils/global";
 
 export function useSelect() {
-  let [board, setboard] = useState<(string | null)[]>(Array(9).fill(null));
+  const [board, setBoard] = useState<(typeTURNS | null)[]>(Array(9).fill(null));
+  const [winner, setWinner] = useState<typeTURNS| null>(null);
+  const [visible, setVisible] = useState(false);
 
-  let [turn, setturn] = useState(TURNS.X);
+  const [turn, setTurn] = useState(TURNS.X);
 
-  const click_ = (index: number) => {
+  const clickSquare = (index: number) => {
     if (board[index]) return;
+    if (winner) return;
 
-    let new_board = [...board];
+    const new_board = [...board];
     new_board[index] = turn;
 
     for (let index = 0; index < winningCombinations.length; index++) {
@@ -18,19 +21,26 @@ export function useSelect() {
 
       if (new_board[a] && new_board[a] === new_board[b] && new_board[a] === new_board[c]) {
         console.log("ha ganado " + turn);
-        break;
+        setWinner(turn);
+        setVisible(true);
+        return
       }
     }
 
-    setboard(new_board);
-    setturn(turn === TURNS.X ? TURNS.O : TURNS.X);
+    setBoard(new_board);
+    setTurn(turn === TURNS.X ? TURNS.O : TURNS.X);
   }
 
-
   const clearAll = () => {
-    setboard(Array(9).fill(null));
-    setturn(TURNS.X);
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.X);
+    setWinner(null);
+    setVisible(false);
   };
 
-  return { board, turn, setturn, click_, clearAll };
+  const clickCerrar = () => {
+    setVisible(false);
+  };
+
+  return { board, turn, setTurn, clickSquare, clearAll, clickCerrar, winner, visible };
 }

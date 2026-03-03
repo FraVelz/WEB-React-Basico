@@ -3,9 +3,10 @@ import { useSelect } from "./hooks/useSelect";
 import { Container } from "../components/Container";
 
 import { Square } from "./components/Square";
+import { ModalWinning } from "./components/modalWinning";
 
 export default function TicTaeToe() {
-  const { board, turn, click_, clearAll } = useSelect();
+  const { board, turn, clickSquare, clickCerrar, clearAll, winner, visible } = useSelect();
 
   return (
     <div className="flex items-center justify-center min-h-screen
@@ -29,7 +30,7 @@ export default function TicTaeToe() {
                 key={i}
                 index={i}
                 board={board}
-                click_={click_}
+                click_={clickSquare}
               />
             ))}
         </div>
@@ -45,13 +46,12 @@ export default function TicTaeToe() {
           className="
           px-6 
           py-3 
-          bg-white 
-          text-slate-700 
-          font-bold 
+          bg-[var(--color-text)]
+          text-[var(--color-secundary)]
+          hover:scale-105 
+          hover:bg-[var(--color-text/40)]
           rounded-xl 
           shadow-lg 
-          hover:scale-105 
-          hover:bg-slate-300
           cursor-pointer
           transition-all 
           duration-300
@@ -61,6 +61,9 @@ export default function TicTaeToe() {
           Reiniciar
         </button>
       </Container>
+
+
+    {visible && <ModalWinning clickCerrar={clickCerrar} wining={winner} visible={visible} />}
     </div>
   );
 }

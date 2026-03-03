@@ -1,7 +1,8 @@
+import { type typeTURNS } from "../utils/global";
 
 type SquareProps = {
   index: number;
-  board: (string | null)[];
+  board: (typeTURNS | null)[];
   click_: (index: number) => void;
 };
 
@@ -9,9 +10,7 @@ export function Square({ click_, board, index }: SquareProps) {
 
   return (
     <button
-      id="elements"
-      className={`
-      btn-${index}
+      className="
       bg-white/20 
       hover:bg-white/40 
       active:scale-95
@@ -25,7 +24,7 @@ export function Square({ click_, board, index }: SquareProps) {
       font-extrabold 
       text-white 
       cursor-pointer 
-      `}
+      "
       onClick={() => click_(index)}
     >
       {board[index]}

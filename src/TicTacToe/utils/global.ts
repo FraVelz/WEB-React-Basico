@@ -1,7 +1,9 @@
-export const TURNS = {
+export type typeTURNS = "X" | "O";
+
+export const TURNS: Record<string, typeTURNS> = {
   X: "X",
   O: "O",
-};
+} as const;
 
 export const winningCombinations = [
   // Filas
