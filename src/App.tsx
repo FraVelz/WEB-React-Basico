@@ -1,13 +1,11 @@
-// import { useState } from 'react'
-
-import TicTaeToe from "./TicTacToe/pages/TicTocTae";
+import TicTaeToe from "./TicTacToe/page"
+import Contador from "./Contador/page"
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
       <main className="min-h-screen bg-slate-950 w-full">
+        <Contador />
         <TicTaeToe />
       </main>
     </>
